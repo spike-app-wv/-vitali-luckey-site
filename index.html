@@ -31,9 +31,9 @@ input, select, textarea { font: inherit; color: inherit; }
   --paper-alt:   #E6E1D2;
   --ink:         #12192A;
   --ink-soft:    #545B6E;
-  --brass:       #B8863C;
-  --brass-light: #D7AE70;
-  --brass-deep:  #8C6527;
+  --brass:       #C9A24E;
+  --brass-light: #E1C280;
+  --brass-deep:  #A17D34;
   --cream:       #EDEAE0;
   --cream-soft:  rgba(237,234,224,0.68);
   --line-navy:   rgba(237,234,224,0.14);
@@ -214,7 +214,7 @@ h1,h2,h3{ font-family: var(--font-display); font-weight: 500; line-height: 1.08;
 .trust{ padding-block: 26px; border-top: 1px solid var(--line-paper); border-bottom: 1px solid var(--line-paper); overflow: hidden; }
 .trust-inner{ display: flex; align-items: center; gap: 26px; }
 .trust-label{ font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); flex-shrink: 0; }
-.marquee-wrap{ flex: 1; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marquee-wrap{ flex: 1; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent); mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent); }
 .marquee{ display: flex; width: max-content; animation: marquee 20s linear infinite; }
 .marquee:hover{ animation-play-state: paused; }
 .marquee-track{ display: flex; align-items: center; gap: 16px; padding-right: 16px; }
@@ -349,6 +349,12 @@ h1,h2,h3{ font-family: var(--font-display); font-weight: 500; line-height: 1.08;
 .check-pill input:focus-visible + span{ outline: 2px solid var(--brass); outline-offset: 2px; }
 .form-foot{ display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 8px; }
 .form-note{ font-size: 12.5px; color: var(--cream-soft); max-width: 34ch; }
+.form-success{ border: 1px solid var(--brass); background: rgba(201,162,78,0.08); padding: 40px; text-align: center; }
+.form-success h3{ color: var(--cream); font-size: 24px; margin-bottom: 10px; }
+.form-success p{ color: var(--cream-soft); font-size: 15px; }
+.form-error{ color: #E8A9A0; font-size: 13px; margin-top: 10px; }
+.copy-btn{ background: none; border: none; color: var(--brass-light); font-family: var(--font-mono); font-size: 12px; cursor: pointer; padding: 0; margin-left: 8px; text-decoration: underline; text-underline-offset: 3px; }
+.copy-btn:hover{ color: var(--brass); }
 
 /* ============ PAY STRIP ============ */
 .pay-strip{ padding-block: 40px; border-bottom: 1px solid var(--line-paper); }
@@ -565,22 +571,24 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 <!-- ============ TRUST STRIP / MARQUEE ============ -->
 <section class="trust section-paper">
   <div class="wrap trust-inner">
-    <span class="trust-label">Built for</span>
+    <span class="trust-label">We build for</span>
     <div class="marquee-wrap">
       <div class="marquee">
         <div class="marquee-track">
-          <span>HVAC</span><span class="dot">/</span>
-          <span>Plumbing</span><span class="dot">/</span>
-          <span>Landscaping</span><span class="dot">/</span>
-          <span>Roofing</span><span class="dot">/</span>
-          <span>Electrical</span><span class="dot">/</span>
+          <span>HVAC</span><span class="dot">&bull;</span>
+          <span>Plumbing</span><span class="dot">&bull;</span>
+          <span>Landscaping</span><span class="dot">&bull;</span>
+          <span>Roofing</span><span class="dot">&bull;</span>
+          <span>Electrical</span><span class="dot">&bull;</span>
+          <span>Every Local Business</span><span class="dot">&bull;</span>
         </div>
         <div class="marquee-track" aria-hidden="true">
-          <span>HVAC</span><span class="dot">/</span>
-          <span>Plumbing</span><span class="dot">/</span>
-          <span>Landscaping</span><span class="dot">/</span>
-          <span>Roofing</span><span class="dot">/</span>
-          <span>Electrical</span><span class="dot">/</span>
+          <span>HVAC</span><span class="dot">&bull;</span>
+          <span>Plumbing</span><span class="dot">&bull;</span>
+          <span>Landscaping</span><span class="dot">&bull;</span>
+          <span>Roofing</span><span class="dot">&bull;</span>
+          <span>Electrical</span><span class="dot">&bull;</span>
+          <span>Every Local Business</span><span class="dot">&bull;</span>
         </div>
       </div>
     </div>
@@ -803,11 +811,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
       <p class="eyebrow">Start a Project</p>
       <h2>Tell us about the business</h2>
       <p>Fill this out and we'll get back to you personally. No forms that vanish into a call center.</p>
-      <span class="contact-line">Email: <a href="mailto:hello@vitaliluckey.com">hello@vitaliluckey.com</a></span>
+      <span class="contact-line">Email: <a href="mailto:hello@vitaliluckeydigital.com" id="mainEmailLink">hello@vitaliluckeydigital.com</a><button type="button" class="copy-btn" data-copy="hello@vitaliluckeydigital.com">Copy</button></span>
       <span class="contact-line">Instagram: <a href="#">@vitaliluckeydigital</a></span>
     </div>
 
-    <form class="reveal" id="quoteForm" action="mailto:hello@vitaliluckey.com" method="POST" enctype="text/plain">
+    <form class="reveal" id="quoteForm" name="quote-request" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="quote-request">
+      <p style="position:absolute; left:-9999px;" aria-hidden="true">
+        <label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+      </p>
       <div class="form-grid">
         <div class="field half">
           <label for="fName">Name</label>
@@ -852,10 +864,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
         </div>
       </div>
       <div class="form-foot">
-        <button type="submit" class="btn btn-primary">Send It</button>
-        <p class="form-note">We read every submission personally, no auto-replies.</p>
+        <button type="submit" class="btn btn-primary" id="quoteSubmitBtn">Send It</button>
+        <p class="form-note" id="quoteFormNote">We read every submission personally, no auto-replies.</p>
       </div>
     </form>
+    <div class="form-success" id="formSuccess" hidden>
+      <h3>Got it.</h3>
+      <p>Thanks, that landed in our inbox. We read every one personally and get back within a day or two.</p>
+    </div>
   </div>
 </section>
 
@@ -893,7 +909,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="mailto:hello@vitaliluckey.com">hello@vitaliluckey.com</a></li>
+          <li><a href="mailto:hello@vitaliluckeydigital.com">hello@vitaliluckeydigital.com</a></li>
           <li><a href="#quote">Book a call</a></li>
         </ul>
       </div>
@@ -1083,6 +1099,49 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
       });
     }
   }
+
+  // ---- Quote form: real submit with real feedback, works with or without GSAP ----
+  var quoteForm = document.getElementById('quoteForm');
+  if(quoteForm){
+    quoteForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = document.getElementById('quoteSubmitBtn');
+      var note = document.getElementById('quoteFormNote');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      var data = new FormData(quoteForm);
+      var encoded = new URLSearchParams(data).toString();
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encoded
+      }).then(function(res){
+        if(!res.ok){ throw new Error('Network response was not ok'); }
+        quoteForm.hidden = true;
+        document.getElementById('formSuccess').hidden = false;
+      }).catch(function(){
+        btn.disabled = false;
+        btn.textContent = 'Send It';
+        note.innerHTML = 'Something went wrong. Email us directly instead: <a href="mailto:hello@vitaliluckeydigital.com" style="color:var(--brass-light);">hello@vitaliluckeydigital.com</a>';
+        note.classList.add('form-error');
+      });
+    });
+  }
+
+  // ---- Copy-to-clipboard fallback for email links ----
+  document.querySelectorAll('.copy-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.getAttribute('data-copy');
+      var done = function(){
+        var original = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = original; }, 1800);
+      };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done).catch(function(){});
+      }
+    });
+  });
 })();
 </script>
 
